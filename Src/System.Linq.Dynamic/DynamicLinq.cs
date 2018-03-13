@@ -401,14 +401,14 @@ namespace System.Linq.Dynamic
         static ClassFactory() { }  // Trigger lazy initialization of static fields
 
         ModuleBuilder module;
-        Dictionary<Signature, Type> classes;
+        Dictionary<Signature, TypeInfo> classes;
         int classCount;
         ReaderWriterLock rwLock;
 
         private ClassFactory()
         {
             AssemblyName name = new AssemblyName("DynamicClasses");
-            AssemblyBuilder assembly = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
+            AssemblyBuilder assembly = AssemblyBuilder.DefineDynamicAssembly(name, AssemblyBuilderAccess.Run);
 #if ENABLE_LINQ_PARTIAL_TRUST
             new ReflectionPermission(PermissionState.Unrestricted).Assert();
 #endif
@@ -422,7 +422,7 @@ namespace System.Linq.Dynamic
                 PermissionSet.RevertAssert();
 #endif
             }
-            classes = new Dictionary<Signature, Type>();
+            classes = new Dictionary<Signature, TypeInfo>();
             rwLock = new ReaderWriterLock();
         }
 
@@ -432,7 +432,7 @@ namespace System.Linq.Dynamic
             try
             {
                 Signature signature = new Signature(properties);
-                Type type;
+                TypeInfo type;
                 if (!classes.TryGetValue(signature, out type))
                 {
                     type = CreateAndCacheDynamicClass(signature);
@@ -446,12 +446,12 @@ namespace System.Linq.Dynamic
             }
         }
 
-        Type CreateAndCacheDynamicClass(Signature signature)
+        TypeInfo CreateAndCacheDynamicClass(Signature signature)
         {
             LockCookie cookie = rwLock.UpgradeToWriterLock(Timeout.Infinite);
             try
             {
-                Type type;
+                TypeInfo type;
                 if (!classes.TryGetValue(signature, out type))
                 {
                     type = CreateDynamicClass(signature.properties);
@@ -466,7 +466,7 @@ namespace System.Linq.Dynamic
             }
         }
 
-        Type CreateDynamicClass(DynamicProperty[] properties)
+        TypeInfo CreateDynamicClass(DynamicProperty[] properties)
         {
             string typeName = "DynamicClass" + (classCount + 1);
 #if ENABLE_LINQ_PARTIAL_TRUST
@@ -479,7 +479,7 @@ namespace System.Linq.Dynamic
                 FieldInfo[] fields = GenerateProperties(tb, properties);
                 GenerateEquals(tb, fields);
                 GenerateGetHashCode(tb, fields);
-                Type result = tb.CreateType();
+                TypeInfo result = tb.CreateTypeInfo();
                 classCount++;
                 return result;
             }
@@ -780,7 +780,6 @@ namespace System.Linq.Dynamic
             typeof(Guid),
             typeof(Math),
             typeof(Convert),
-			typeof(System.Data.Objects.EntityFunctions)
         };
 
         static readonly Expression trueLiteral = Expression.Constant(true);

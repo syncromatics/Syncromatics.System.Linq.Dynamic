@@ -6,3 +6,6 @@ Src/System.Linq.Dynamic.sln.DotSettings.user
 *.nupkg
 *.dll
 Src/TestResults/
+tools
+!tools/packages.config
+.vs

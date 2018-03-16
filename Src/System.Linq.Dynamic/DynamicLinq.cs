@@ -1814,7 +1814,7 @@ namespace System.Linq.Dynamic
                 ConstantExpression ce = (ConstantExpression)expr;
                 if (ce == nullLiteral)
                 {
-                    if (!type.IsValueType || IsNullableType(type))
+                    if (!(type.IsValueType || type.IsPointer) || IsNullableType(type))
                         return Expression.Constant(null, type);
                 }
                 else

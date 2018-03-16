@@ -25,7 +25,7 @@ Task("GetVersion")
             UpdateAssemblyInfo = false
         });
 
-        semVersion = result.NuGetVersionV2;
+        semVersion = result.FullSemVer;
         addLatest = result.BranchName == "master";
 
         Information($"##teamcity[buildNumber '{semVersion}']");

@@ -69,5 +69,58 @@ namespace System.Linq.Dynamic.Test
 
             Task.WaitAll(tasks.ToArray());
         }
+
+        [TestMethod]
+        public void ShouldOrderSimpleTypes()
+        {
+            var ordered = Enumerable.Range(0, 100)
+                .Select(i => new
+                {
+                    Value = $"{i:000}",
+                })
+                .OrderBy("Value desc");
+            Assert.AreEqual(ordered.First().Value, "099");
+            Assert.AreEqual(ordered.Last().Value, "000");
+        }
+
+        [TestMethod]
+        public void ShouldOrderNestedTypes()
+        {
+            var ordered = new Outer[]
+                {
+                    new Outer(), 
+                    new Outer
+                    {
+                        Value = "001 No inner",
+                    },
+                    new Outer
+                    {
+                        Value = "002 With inner",
+                        Inner = new Inner(),
+                    },
+                    new Outer
+                    {
+                        Value = "003 With inner",
+                        Inner = new Inner
+                        {
+                            Name = "With value",
+                        },
+                    },
+                }
+                .OrderBy("(Inner==null||Inner.Name==null?String(null):String(Inner.Name)) Asc,Value desc");
+            Assert.AreEqual("002 With inner", ordered.First().Value);
+            Assert.AreEqual("003 With inner", ordered.Last().Value);
+        }
+
+        private class Outer
+        {
+            public string Value { get; set; }
+            public Inner Inner { get; set; }
+        }
+
+        private class Inner
+        {
+            public string Name { get; set; }
+        }
     }
 }

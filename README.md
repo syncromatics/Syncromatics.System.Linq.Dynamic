@@ -1,4 +1,4 @@
-# System.Linq.Dynamic.NETCore
+# Syncromatics.System.Linq.Dynamic
 
 Prologue:
 
@@ -15,10 +15,10 @@ Prologue:
 
 ## Quickstart
 
-Add the `System.Linq.Dynamic.NETCore` package to your project:
+Add the `Syncromatics.System.Linq.Dynamic` package to your project:
 
 ```bash
-dotnet add package System.Linq.Dynamic.NETCore
+dotnet add package Syncromatics.System.Linq.Dynamic
 ```
 
 ### Documentation and Samples
@@ -30,8 +30,8 @@ http://msdn.microsoft.com/en-US/vstudio/bb894665.aspx
 
 ## Building
 
-[![Travis](https://img.shields.io/travis/syncromatics/System.Linq.Dynamic.NETCore.svg)](https://travis-ci.org/syncromatics/System.Linq.Dynamic.NETCore)
-[![NuGet](https://img.shields.io/nuget/v/System.Linq.Dynamic.NETCore.svg)](https://www.nuget.org/packages/System.Linq.Dynamic.NETCore/)
+[![Travis](https://img.shields.io/travis/syncromatics/Syncromatics.System.Linq.Dynamic.svg)](https://travis-ci.org/syncromatics/Syncromatics.System.Linq.Dynamic)
+[![NuGet](https://img.shields.io/nuget/v/Syncromatics.System.Linq.Dynamic.svg)](https://www.nuget.org/packages/Syncromatics.System.Linq.Dynamic/)
 
 This is built using Cake and .NET Core.
 
@@ -59,7 +59,7 @@ We welcome contributions and collaboration on this project. Please read our [con
 
 [![Syncromatics Engineering logo](https://en.gravatar.com/userimage/100017782/89bdc96d68ad4b23998e3cdabdeb6e13.png?size=16) Syncromatics Engineering](https://github.com/syncromatics)
 
-[![license](https://img.shields.io/github/license/syncromatics/System.Linq.Dynamic.NETCore.svg)](https://github.com/syncromatics/System.Linq.Dynamic.NETCore/blob/master/LICENSE)
-[![GitHub contributors](https://img.shields.io/github/contributors/syncromatics/System.Linq.Dynamic.NETCore.svg)](https://github.com/syncromatics/System.Linq.Dynamic.NETCore/graphs/contributors)
+[![license](https://img.shields.io/github/license/syncromatics/Syncromatics.System.Linq.Dynamic.svg)](https://github.com/syncromatics/Syncromatics.System.Linq.Dynamic/blob/master/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/syncromatics/Syncromatics.System.Linq.Dynamic.svg)](https://github.com/syncromatics/Syncromatics.System.Linq.Dynamic/graphs/contributors)
 
 This software is made available by Syncromatics under the MS-PL license.

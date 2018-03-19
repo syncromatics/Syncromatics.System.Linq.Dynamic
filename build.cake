@@ -119,7 +119,7 @@ Task("PushNugetPackages")
             ApiKey = EnvironmentVariable("NUGET_API_KEY")
         };
 
-        DotNetCoreNuGetPush($"./artifacts/System.Linq.Dynamic.NETCore.{semVersion}.nupkg", settings);
+        DotNetCoreNuGetPush($"./artifacts/Syncromatics.System.Linq.Dynamic.{semVersion}.nupkg", settings);
 
         Information("##teamcity[blockClosed name='PushNugetPackages']");
     });

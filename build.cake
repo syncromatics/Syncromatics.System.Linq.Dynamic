@@ -115,11 +115,11 @@ Task("PushNugetPackages")
 
         var settings = new DotNetCoreNuGetPushSettings
         {
-            Source = "https://www.myget.org/F/syncromatics/api/v2/package",
-            ApiKey = EnvironmentVariable("MYGET_API_KEY")
+            Source = "https://www.nuget.org/api/v2/package",
+            ApiKey = EnvironmentVariable("NUGET_API_KEY")
         };
 
-        DotNetCoreNuGetPush($"./artifacts/System.Linq.Dynamic.{semVersion}.nupkg", settings);
+        DotNetCoreNuGetPush($"./artifacts/System.Linq.Dynamic.NETCore.{semVersion}.nupkg", settings);
 
         Information("##teamcity[blockClosed name='PushNugetPackages']");
     });

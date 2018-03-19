@@ -102,7 +102,7 @@ Task("PackSystemLinqDynamic")
             NoBuild = true
         };
 
-        DotNetCorePack("./src/System.Linq.Dynamic/System.Linq.Dynamic.csproj", settings);
+        DotNetCorePack("./Src/System.Linq.Dynamic/System.Linq.Dynamic.csproj", settings);
 
         Information("##teamcity[blockClosed name='PackSystemLinqDynamic']");
     });
